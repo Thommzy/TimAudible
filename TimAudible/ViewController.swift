@@ -44,23 +44,48 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
       return pc
     }()
     
-    let skipButton : UIButton = {
+    lazy var skipButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Skip", for: .normal)
         button.setTitleColor(UIColor(red: 247/255, green: 154/255, blue: 27/255, alpha: 1), for: .normal)
+        button.addTarget(self, action: #selector(skip), for: .touchUpInside)
         return button
     }()
+    
+    @objc func skip() {
+        pageControl.currentPage = pages.count - 1
+        nextPage()
+    }
     
     var pageControlBottomAnchor : NSLayoutConstraint?
     var skipButtonTopAnchor : NSLayoutConstraint?
     var nextButtonTopAnchor : NSLayoutConstraint?
     
-    let nextButton : UIButton = {
+    lazy var  nextButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Next", for: .normal)
         button.setTitleColor(UIColor(red: 247/255, green: 154/255, blue: 27/255, alpha: 1), for: .normal)
+        button.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
         return button
     }()
+    
+    @objc func nextPage(){
+        if pageControl.currentPage == pages.count {
+            return
+        }
+        
+        //Second Last Page
+        if pageControl.currentPage == pages.count - 1 {
+            moveControlConstraintsOffScreen()
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+        let indexPath = IndexPath(item: pageControl.currentPage + 1, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        pageControl.currentPage += 1
+    }
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,11 +96,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         view.addSubview(skipButton)
         view.addSubview(nextButton)
          
-        pageControlBottomAnchor = pageControl.anchor(nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40) [1]
+        pageControlBottomAnchor = pageControl.anchor(nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)[1]
         
-        skipButtonTopAnchor = skipButton.anchor(view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 0 , leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 60, heightConstant: 50).first
+        skipButtonTopAnchor = skipButton.anchor(view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 60, heightConstant: 50).first
         
-        nextButtonTopAnchor  = nextButton.anchor(view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 680, heightConstant: 50).first 
+        nextButtonTopAnchor = nextButton.anchor(view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 60, heightConstant: 50).first
        
         
         //MARK:-USE AUTOLAYOUT INSTEAD
@@ -87,7 +112,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    } 
+    }
     
     @objc func keyboardHide() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
@@ -112,9 +137,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         pageControl.currentPage = Int(pageNumber)
         
         if Int(pageNumber) == pages.count {
-            pageControlBottomAnchor?.constant = 40
-            skipButtonTopAnchor?.constant = -52
-            nextButtonTopAnchor?.constant = -52
+            moveControlConstraintsOffScreen()
         } else {
             pageControlBottomAnchor?.constant = 0
             skipButtonTopAnchor?.constant = 0
@@ -124,6 +147,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
+    }
+    
+    fileprivate func moveControlConstraintsOffScreen() {
+        pageControlBottomAnchor?.constant = 40
+        skipButtonTopAnchor?.constant = -52
+        nextButtonTopAnchor?.constant = -52
     }
     
     fileprivate func registerCells() {
