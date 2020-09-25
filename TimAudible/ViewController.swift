@@ -15,7 +15,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        cv.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         cv.dataSource = self
         cv.delegate = self
         cv.isPagingEnabled = true
@@ -23,6 +23,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }()
     
     let cellId = "cellId"
+    
+    let pages : [PageModel] = {
+        var finalArray : [PageModel] = []
+        let firstPage = PageModel(title: "Share a great listen!", message: "It is free to send your books to people in your life. Every receipient first book is on us.", imageName: "page1")
+        let secondPage = PageModel(title: "Send from your library", message: "Tap the more menu next to any books. Choose \"Send this Book\"", imageName: "page2")
+        let thirdPage = PageModel(title: "Send from the Player", message: "Tap the more menu in the upper corner. Choose \"Send this Book\"", imageName: "page3")
+        finalArray.append(firstPage)
+        finalArray.append(secondPage)
+        finalArray.append(thirdPage)
+        return finalArray
+    }()
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +48,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-           return 4
+        return pages.count
        }
        
        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PageCell
+        
+        let page = pages[indexPath.item]
+        cell.page = page
         return cell
        }
     
