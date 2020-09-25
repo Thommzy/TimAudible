@@ -72,6 +72,7 @@ class PageCell: UICollectionViewCell {
         
         lineSeperatorView.anchorToTop(top: nil, left: leftAnchor, bottom: textView.topAnchor, right: rightAnchor)
         lineSeperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        
     }
     
     required init?(coder: NSCoder) {
