@@ -34,14 +34,22 @@ class LoginCell : UICollectionViewCell {
         return textField
     }()
     
-    let loginButton : UIButton = {
+    lazy var loginButton : UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
         button.setTitle("Log in", for: .normal)
         button.setTitleColor(.white, for: .normal )
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
     
+    var loginController : LoginController?
+     
+    weak var delegate : LoginControllerDelegate?
+    
+    @objc func handleLogin() {
+        delegate?.finishLoggingIn()
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         
