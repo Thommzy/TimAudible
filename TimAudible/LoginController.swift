@@ -188,6 +188,9 @@ class LoginController: UIViewController, UICollectionViewDataSource, UICollectio
         let rootViewController = SceneDelegate.shared?.window?.rootViewController
         guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
         mainNavigationController.viewControllers = [HomeController()]
+        
+        UserDefaults.standard.setIsLoggedIn(value: true)
+        
         dismiss(animated: true, completion: nil)
     }
     

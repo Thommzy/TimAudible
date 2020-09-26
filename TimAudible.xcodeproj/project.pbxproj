@@ -12,6 +12,8 @@
 		04C66928251E039400F8EC04 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C66927251E039400F8EC04 /* Extensions.swift */; };
 		04C6692D251E5F1B00F8EC04 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6692C251E5F1B00F8EC04 /* LoginCell.swift */; };
 		04C66931251EAC2B00F8EC04 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C66930251EAC2B00F8EC04 /* MainNavigationController.swift */; };
+		04C66935251F333700F8EC04 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C66934251F333700F8EC04 /* HomeController.swift */; };
+		04C66938251F37B800F8EC04 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C66937251F37B800F8EC04 /* Helpers.swift */; };
 		04CA7E1E251D839800C5E26E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA7E1D251D839800C5E26E /* AppDelegate.swift */; };
 		04CA7E20251D839800C5E26E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA7E1F251D839800C5E26E /* SceneDelegate.swift */; };
 		04CA7E22251D839800C5E26E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA7E21251D839800C5E26E /* LoginController.swift */; };
@@ -26,6 +28,8 @@
 		04C66927251E039400F8EC04 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		04C6692C251E5F1B00F8EC04 /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
 		04C66930251EAC2B00F8EC04 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		04C66934251F333700F8EC04 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		04C66937251F37B800F8EC04 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		04CA7E1A251D839800C5E26E /* TimAudible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimAudible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CA7E1D251D839800C5E26E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04CA7E1F251D839800C5E26E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				04C66927251E039400F8EC04 /* Extensions.swift */,
 				04C6692C251E5F1B00F8EC04 /* LoginCell.swift */,
 				04C66930251EAC2B00F8EC04 /* MainNavigationController.swift */,
+				04C66934251F333700F8EC04 /* HomeController.swift */,
+				04C66937251F37B800F8EC04 /* Helpers.swift */,
 			);
 			path = TimAudible;
 			sourceTree = "<group>";
@@ -156,8 +162,10 @@
 				04CA7E22251D839800C5E26E /* LoginController.swift in Sources */,
 				04C6692D251E5F1B00F8EC04 /* LoginCell.swift in Sources */,
 				04C66931251EAC2B00F8EC04 /* MainNavigationController.swift in Sources */,
+				04C66938251F37B800F8EC04 /* Helpers.swift in Sources */,
 				04C66928251E039400F8EC04 /* Extensions.swift in Sources */,
 				04CA7E1E251D839800C5E26E /* AppDelegate.swift in Sources */,
+				04C66935251F333700F8EC04 /* HomeController.swift in Sources */,
 				04C6691F251D994600F8EC04 /* PageCell.swift in Sources */,
 				04CA7E20251D839800C5E26E /* SceneDelegate.swift in Sources */,
 				04C66922251DA87300F8EC04 /* Page.swift in Sources */,
