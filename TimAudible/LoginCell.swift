@@ -48,6 +48,7 @@ class LoginCell : UICollectionViewCell {
     weak var delegate : LoginControllerDelegate?
     
     @objc func handleLogin() {
+        print("loggedIn")
         delegate?.finishLoggingIn()
     }
     override init(frame: CGRect) {

@@ -28,8 +28,11 @@ class MainNavigationController: UINavigationController {
         return UserDefaults.standard.isLoggedIn()
     }
     
+ 
+    
     @objc func showLoginController() {
         let loginController = LoginController()
+        loginController.modalPresentationStyle = .fullScreen
         present(loginController, animated: true, completion: {
             print("Mad oh!")
         })
